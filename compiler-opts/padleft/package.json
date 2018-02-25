@@ -1,0 +1,22 @@
+{
+  "name": "padleft",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "pretest": "tsc test/padLeft.test.ts",
+    "test": "mocha test/padLeft.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "9.4.6",
+    "mocha": "5.0.1",
+    "ts-node": "5.0.0",
+    "typescript": "2.7.2"
+  }
+}
