@@ -4,21 +4,15 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "jsx": "react",
+    "noImplicitAny": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "declaration": true,
     "suppressImplicitAnyIndexErrors": false,
     "outDir": "lib",
-    "lib": [
-      "dom",
-      "es2017"
-    ]
+    "lib": ["dom", "es2017"]
   },
   "compileOnSave": true,
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "src"
-  ]
+  "exclude": ["node_modules"],
+  "include": ["src"]
 }
