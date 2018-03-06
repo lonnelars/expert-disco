@@ -1,0 +1,15 @@
+{
+  "name": "fold-left",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "alm": "^2.38.1",
+    "typescript": "^2.7.2"
+  },
+  "scripts": {
+    "dev": "alm -o",
+    "pretest": "tsc src/foldLeft.ts --outDir lib",
+    "test": "node lib/foldLeft.js"
+  }
+}

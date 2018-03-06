@@ -20,7 +20,7 @@
     "alm": "^2.38.1",
     "mocha": "5.0.1",
     "ts-node": "5.0.0",
-    "typescript": "2.7.2"
+    "typescript": "^2.7.2"
   },
   "dependencies": {}
 }
