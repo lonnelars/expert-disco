@@ -8,8 +8,9 @@
   },
   "scripts": {
     "pretest": "tsc test/padLeft.test.ts",
-    "test": "mocha test/padLeft.test.js"
-      , "dev": "alm -o"
+    "test": "mocha test/padLeft.test.js",
+    "dev": "alm -o",
+    "hello": "echo hello world"
   },
   "keywords": [],
   "author": "",
