@@ -9,7 +9,7 @@ const foldLeft = (f, acc, list) => {
 
 const test = () => {
   const xs = ["one", "two", "three"];
-  const join = (x: string, y: string) => x === "" ? y : x + ", " + y
+  const join = (x: string, y: string) => (x === "" ? y : x + ", " + y);
   console.log(foldLeft(join, null, xs));
 };
 

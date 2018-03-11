@@ -8,8 +8,8 @@
     "typescript": "^2.7.2"
   },
   "scripts": {
-    "dev": "alm -o",
-    "pretest": "tsc src/foldLeft.ts --outDir lib",
-    "test": "node lib/foldLeft.js"
+    "editor": "alm -o",
+    "build": "tsc",
+    "test": "npm run build && node lib/foldLeft.js"
   }
 }
