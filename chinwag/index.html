@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chinwag</title>
+</head>
+
+<body>
+    <h1>Chinwag comment system</h1>
+
+    <form action="" onsubmit="submitComment(this); return false;" class="comment-form">
+        <h2>New comment</h2>
+        <label for="username">Name</label>
+        <input type="text" name="username" id="username">
+        <label for="comment">Comment</label>
+        <textarea name="comment" id="comment" cols="65" rows="10"></textarea>
+        <button type="submit">Submit comment</button>
+    </form>
+
+    <section>
+        <h2>Comments</h2>
+
+        <ol class="comment-list">
+        </ol>
+    </section>
+
+    <style>
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
