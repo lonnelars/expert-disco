@@ -1,3 +1,9 @@
+declare global {
+  interface Window {
+    submitComment: (form: HTMLFormElement) => void;
+  }
+}
+
 interface FormElements extends HTMLCollection {
   username: HTMLInputElement;
   comment: HTMLInputElement;
@@ -48,7 +54,7 @@ const updateView = (model: Model): void => {
   document.body.appendChild(ol);
 };
 
-const submitComment = (form: HTMLFormElement): void => {
+export const submitComment = (form: HTMLFormElement): void => {
   const elements: FormElements = form.elements as FormElements;
   const username = elements.username.value;
   const comment = elements.comment.value;
@@ -60,3 +66,5 @@ const submitComment = (form: HTMLFormElement): void => {
 
   updateView(model);
 };
+
+window.submitComment = submitComment;
