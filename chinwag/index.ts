@@ -29,15 +29,17 @@ let model: Model = {
 
 const updateView = (model: Model): void => {
   const ol: HTMLOListElement = document.createElement("ol");
-  ol.classList.add("comment-list");
+  ol.classList.add("comments-container__list");
   model.comments
     .map(userComment => {
       const li: HTMLLIElement = document.createElement("li");
+      li.classList.add("comments__item");
       li.classList.add("comment");
       const commentParagraph: HTMLParagraphElement = document.createElement(
         "p"
       );
       const signature: HTMLParagraphElement = document.createElement("p");
+      signature.classList.add("comment__signature");
       li.appendChild(commentParagraph);
       li.appendChild(signature);
       commentParagraph.innerHTML = userComment.comment;
@@ -45,13 +47,29 @@ const updateView = (model: Model): void => {
       return li;
     })
     .forEach(li => ol.appendChild(li));
-  const commentList: HTMLOListElement | null = document.querySelector(
-    "ol.comment-list"
+  const commentsContainer: HTMLElement | null = document.querySelector(
+    ".comments-container"
   );
-  if (commentList != null) {
-    commentList.remove();
+  if (commentsContainer != null) {
+    const list: HTMLOListElement | null = commentsContainer.querySelector(
+      ".comments-container__list"
+    );
+    if (list == null) {
+      commentsContainer.appendChild(ol);
+    } else {
+      commentsContainer.replaceChild(ol, list);
+    }
   }
-  document.body.appendChild(ol);
+};
+
+const resetForm = (form: HTMLFormElement): void => {
+  form.reset();
+  for (let i = 0, len = form.elements.length; i < len; i++) {
+    const element = form.elements.item(i);
+    if (element.getAttribute("name") === "username") {
+      (<HTMLInputElement>element).focus();
+    }
+  }
 };
 
 export const submitComment = (form: HTMLFormElement): void => {
@@ -65,6 +83,7 @@ export const submitComment = (form: HTMLFormElement): void => {
   };
 
   updateView(model);
+  resetForm(form);
 };
 
 window.submitComment = submitComment;

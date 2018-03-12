@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="bundle.js"></script>
+    <title>Chinwag</title>
+</head>
+
+<body>
+    <div class="background"></div>
+    <main>
+        <h1 class="main-heading">Chinwag</h1>
+
+        <form action="" onsubmit="submitComment(this); return false;" class="comment-form">
+            <h2 class="comment-form__heading">New comment</h2>
+            <div class="comment-form__row">
+                <label for="username">Name</label>
+                <input type="text" name="username" id="username" autofocus>
+            </div>
+            <div class="comment-form__row">
+                <label for="comment">Comment</label>
+                <input type="text" name="comment" id="comment">
+                </textarea>
+            </div>
+            <div class="comment-form__submit-row">
+                <button type="submit" class="comment-form__submit-button">Submit comment</button>
+            </div>
+        </form>
+
+        <section class="comments-container">
+            <h2 class="comments-container__heading">Comments</h2>
+
+            <ol class="comments-container__list comments">
+
+            </ol>
+        </section>
+    </main>
+
+    <style>
+        @font-face {
+            font-family: halimun;
+            src: url('Halimun.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: "Roboto slab";
+            src: url("RobotoSlab-Regular.ttf") format("truetype");
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            display: relative;
+            font-family: sans-serif;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: -1;
+            overflow: hidden;
+            transform: skewY(-12deg);
+            transform-origin: 0;
+            background: linear-gradient(150deg, #53f 15%, #05d5ff 70%, #a6ffcb 94%);
+        }
+
+        main {
+            grid-column: 5 / 9;
+        }
+
+        .main-heading {
+            color: white;
+            font-size: 72px;
+            text-transform: uppercase;
+            font-family: "Roboto slab"
+        }
+
+        .comments-container__heading {
+            color: white;
+            font-size: 32px;
+        }
+
+        .comments-container__list {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .comments__item {
+            padding: 10px 18px 20px 24px;
+            border-radius: 4px;
+            box-shadow: 0 50px 100px rgba(50, 50, 93, .1), 0 15px 35px rgba(50, 50, 93, .15), 0 5px 15px rgba(0, 0, 0, .1);
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 16px;
+        }
+
+        .comment__signature {
+            justify-self: flex-end;
+            font-family: halimun;
+        }
+
+        .comment-form {
+            padding: 10px 18px 20px 24px;
+            border-radius: 4px;
+            box-shadow: 0 50px 100px rgba(50, 50, 93, .1), 0 15px 35px rgba(50, 50, 93, .15), 0 5px 15px rgba(0, 0, 0, .1);
+            max-width: 645px;
+            background: #fff;
+        }
+
+        .comment-form__heading {
+            color: #424770;
+            font-size: 32px;
+        }
+
+        .comment-form__row {
+            display: flex;
+            padding: 4px 0;
+        }
+
+        .comment-form__row label {
+            flex: 32%;
+            color: #424770;
+            font-size: 17px;
+            line-height: 26px;
+        }
+
+        .comment-form__row input {
+            flex: 68%;
+            background-color: #f6f9fc;
+            border: 1px solid #424770;
+            border-radius: 4px;
+            padding: 5px 20px 8px 13px;
+        }
+
+        .comment-form__submit-row {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 8px;
+        }
+
+        .comment-form__submit-button {
+            background-color: #6772e5;
+            color: white;
+            height: 40px;
+            line-height: 40px;
+            padding: 0 14px;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+    </style>
+</body>
+
+</html>
