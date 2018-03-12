@@ -34,7 +34,7 @@ const updateView = (model: Model): void => {
       const signature: HTMLParagraphElement = document.createElement("p");
       li.appendChild(commentParagraph);
       li.appendChild(signature);
-      commentParagraph.textContent = userComment.comment;
+      commentParagraph.innerHTML = userComment.comment;
       signature.textContent = userComment.username;
       return li;
     })
