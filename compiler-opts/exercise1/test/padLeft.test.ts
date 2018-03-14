@@ -1,5 +1,5 @@
 import { padLeft } from "../src/padLeft";
-import { describe, it } from "mocha";
+import "mocha";
 import * as assert from "assert";
 
 describe("padLeft", () => {
