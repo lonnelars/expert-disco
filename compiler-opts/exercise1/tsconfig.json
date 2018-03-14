@@ -13,5 +13,6 @@
   },
   "compileOnSave": true,
   "exclude": ["node_modules"],
-  "include": ["src"]
+  "include": ["src"],
+  "files": ["src/padLeft.ts", "test/padLeft.test.ts"]
 }

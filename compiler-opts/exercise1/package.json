@@ -7,8 +7,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "pretest": "tsc test/padLeft.test.ts",
-    "test": "mocha test/padLeft.test.js",
+    "pretest": "tsc",
+    "test": "mocha lib/test/padLeft.test.js",
     "dev": "alm -o",
     "hello": "echo hello world"
   },
