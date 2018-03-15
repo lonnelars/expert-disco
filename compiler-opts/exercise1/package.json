@@ -8,7 +8,7 @@
   },
   "scripts": {
     "pretest": "tsc",
-    "test": "mocha lib/test/padLeft.test.js",
+    "test": "mocha test/padLeft.test.js",
     "dev": "alm -o",
     "hello": "echo hello world"
   },
