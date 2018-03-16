@@ -25,6 +25,16 @@ let model: Model = {
 };
 
 const updateView = (model: Model): void => {
+  const commentsContainer: HTMLElement | null = document.querySelector(
+    ".comments-container"
+  );
+  if (commentsContainer != null) {
+    commentsContainer.innerHTML = "";
+  }
+  const h2 = document.createElement("h2");
+  h2.classList.add("comments-container__heading");
+  h2.textContent = "Comments";
+
   const ol: HTMLOListElement = document.createElement("ol");
   ol.classList.add("comments-container__list");
   model.comments
@@ -44,10 +54,9 @@ const updateView = (model: Model): void => {
       return li;
     })
     .forEach(li => ol.appendChild(li));
-  const commentsContainer: HTMLElement | null = document.querySelector(
-    ".comments-container"
-  );
+
   if (commentsContainer != null) {
+    commentsContainer.appendChild(h2);
     const list: HTMLOListElement | null = commentsContainer.querySelector(
       ".comments-container__list"
     );
@@ -84,3 +93,4 @@ export const submitComment = (form: HTMLFormElement): void => {
 };
 
 window.submitComment = submitComment;
+window.onload = () => updateView(model);
