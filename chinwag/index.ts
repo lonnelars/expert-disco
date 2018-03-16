@@ -16,45 +16,76 @@ class UserComment {
   }
 }
 
-interface Model {
-  comments: UserComment[];
+interface NoComments {
+  kind: "NoComments";
 }
 
-let model: Model = {
-  comments: []
-};
+const noComments = (): NoComments => ({
+  kind: "NoComments"
+});
+
+interface CommentList {
+  kind: "CommentList";
+  heading: "Comments";
+  userComments: UserComment[];
+}
+
+const commentList = (comments: UserComment[]): CommentList => ({
+  kind: "CommentList",
+  heading: "Comments",
+  userComments: comments
+});
+
+type Model = NoComments | CommentList;
+
+let model: Model = noComments();
 
 const updateView = (model: Model): void => {
   const ol: HTMLOListElement = document.createElement("ol");
   ol.classList.add("comments-container__list");
-  model.comments
-    .map(userComment => {
-      const li: HTMLLIElement = document.createElement("li");
-      li.classList.add("comments__item");
-      li.classList.add("comment");
-      const commentParagraph: HTMLParagraphElement = document.createElement(
-        "p"
-      );
-      const signature: HTMLParagraphElement = document.createElement("p");
-      signature.classList.add("comment__signature");
-      li.appendChild(commentParagraph);
-      li.appendChild(signature);
-      commentParagraph.innerHTML = userComment.comment;
-      signature.textContent = userComment.username;
-      return li;
-    })
-    .forEach(li => ol.appendChild(li));
   const commentsContainer: HTMLElement | null = document.querySelector(
     ".comments-container"
   );
   if (commentsContainer != null) {
-    const list: HTMLOListElement | null = commentsContainer.querySelector(
-      ".comments-container__list"
-    );
-    if (list == null) {
-      commentsContainer.appendChild(ol);
-    } else {
-      commentsContainer.replaceChild(ol, list);
+    commentsContainer.innerHTML = "";
+  }
+  const h2 = document.createElement("h2");
+  h2.classList.add("comments-container__heading");
+
+  if (model.kind === "NoComments") {
+    h2.textContent = "No comments :-(";
+    if (commentsContainer != null) {
+      commentsContainer.appendChild(h2);
+    }
+  } else {
+    h2.textContent = "Comments";
+    model.userComments
+      .map(userComment => {
+        const li: HTMLLIElement = document.createElement("li");
+        li.classList.add("comments__item");
+        li.classList.add("comment");
+        const commentParagraph: HTMLParagraphElement = document.createElement(
+          "p"
+        );
+        const signature: HTMLParagraphElement = document.createElement("p");
+        signature.classList.add("comment__signature");
+        li.appendChild(commentParagraph);
+        li.appendChild(signature);
+        commentParagraph.innerHTML = userComment.comment;
+        signature.textContent = userComment.username;
+        return li;
+      })
+      .forEach(li => ol.appendChild(li));
+    if (commentsContainer != null) {
+      commentsContainer.appendChild(h2);
+      const list: HTMLOListElement | null = commentsContainer.querySelector(
+        ".comments-container__list"
+      );
+      if (list == null) {
+        commentsContainer.appendChild(ol);
+      } else {
+        commentsContainer.replaceChild(ol, list);
+      }
     }
   }
 };
@@ -74,13 +105,24 @@ export const submitComment = (form: HTMLFormElement): void => {
   const username = elements.username.value;
   const comment = elements.comment.value;
 
-  model = {
-    ...model,
-    comments: model.comments.concat(new UserComment(username, comment))
-  };
+  if (model.kind === "NoComments") {
+    model = {
+      kind: "CommentList",
+      heading: "Comments",
+      userComments: [new UserComment(username, comment)]
+    };
+  } else {
+    model = {
+      ...model,
+      userComments: model.userComments.concat(
+        new UserComment(username, comment)
+      )
+    };
+  }
 
   updateView(model);
   resetForm(form);
 };
 
 window.submitComment = submitComment;
+window.onload = () => updateView(model);
