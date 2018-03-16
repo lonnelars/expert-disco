@@ -10,10 +10,7 @@ interface FormElements extends HTMLCollection {
 }
 
 class UserComment {
-  readonly username: string;
-  readonly comment: string;
-
-  constructor(username: string, comment: string) {
+  constructor(readonly username: string, readonly comment: string) {
     this.username = username;
     this.comment = comment;
   }
